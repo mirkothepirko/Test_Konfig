@@ -107,11 +107,12 @@ Browser                    FastAPI                    APS
 **Response:**
 ```json
 {
-  "status": "inProgress",
-  "progress": 45
+  "status": "inProgress"
 }
 ```
 `status` ∈ `pending | inProgress | succeeded | failed`
+
+Hinweis: APS liefert keinen zuverlässigen Prozentwert. Das Frontend zeigt einen animierten Spinner statt einem Fortschrittsbalken, bis `succeeded` oder `failed` eintrifft.
 
 ### `GET /download/{workItemId}`
 **Response:** Binary STEP-Datei als `attachment`
@@ -131,8 +132,8 @@ Zwei-Spalten-Layout, kein Build:
 │  R_Ecke [●    ]    0 │  │   Box skaliert live      │   │
 │  R_Kante[●    ]    0 │  └──────────────────────────┘   │
 │                      │                                  │
-│  [Für CNC exportieren]  Status: Bereit                  │
-│  [STEP herunterladen]   [████████░░] 80%                │
+│  [Für CNC exportieren]  Status: Bereit / In Arbeit...   │
+│  [STEP herunterladen]   (Spinner während WorkItem läuft)│
 └──────────────────────┴──────────────────────────────────┘
 ```
 
