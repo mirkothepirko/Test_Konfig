@@ -1,3 +1,4 @@
+import json as _json
 import time
 import os
 import httpx
@@ -9,6 +10,8 @@ APS_AUTH_URL = "https://developer.api.autodesk.com/authentication/v2/token"
 APS_OSS_BASE = "https://developer.api.autodesk.com/oss/v2"
 APS_DA_BASE = "https://developer.api.autodesk.com/da/us-east/v3"
 
+SIGNED_URL_MINUTES = 60
+
 
 class APSClient:
     def __init__(self):
@@ -19,6 +22,7 @@ class APSClient:
         self._activity_alias = os.environ.get("APS_ACTIVITY_ALIAS", "prod")
         self._token: str | None = None
         self._token_expiry: float = 0.0
+        self._owner: str | None = None
 
     async def get_token(self) -> str:
         if self._token and time.time() < self._token_expiry - 300:
@@ -50,36 +54,103 @@ class APSClient:
                 resp.raise_for_status()
 
     async def upload_file(self, local_path: str, object_key: str) -> str:
+        """Signed-S3 upload: init -> PUT to S3 -> finalize. Returns object_key."""
         token = await self.get_token()
         with open(local_path, "rb") as f:
             data = f.read()
         async with httpx.AsyncClient() as http:
-            resp = await http.put(
-                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}",
+            init = await http.get(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}/signeds3upload",
+                params={"minutesExpiration": SIGNED_URL_MINUTES},
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            init.raise_for_status()
+            body = init.json()
+            upload_key = body["uploadKey"]
+            s3_url = body["urls"][0]
+
+            put = await http.put(s3_url, content=data)
+            put.raise_for_status()
+
+            finalize = await http.post(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}/signeds3upload",
                 headers={
                     "Authorization": f"Bearer {token}",
-                    "Content-Type": "application/octet-stream",
+                    "Content-Type": "application/json",
                 },
-                content=data,
+                json={"uploadKey": upload_key},
             )
-            resp.raise_for_status()
-        return f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}"
+            finalize.raise_for_status()
+        return object_key
 
-    async def download_file(self, object_key: str) -> bytes:
+    async def get_signed_download(self, object_key: str) -> str:
         token = await self.get_token()
         async with httpx.AsyncClient() as http:
             resp = await http.get(
-                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}",
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}/signeds3download",
+                params={"minutesExpiration": SIGNED_URL_MINUTES},
                 headers={"Authorization": f"Bearer {token}"},
             )
             resp.raise_for_status()
+            return resp.json()["url"]
+
+    async def init_signed_upload(self, object_key: str) -> tuple[str, str]:
+        """Init signed S3 upload, returns (uploadKey, presigned_put_url)."""
+        token = await self.get_token()
+        async with httpx.AsyncClient() as http:
+            resp = await http.get(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}/signeds3upload",
+                params={"minutesExpiration": SIGNED_URL_MINUTES},
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            resp.raise_for_status()
+            body = resp.json()
+            return body["uploadKey"], body["urls"][0]
+
+    async def finalize_upload(self, object_key: str, upload_key: str) -> None:
+        token = await self.get_token()
+        async with httpx.AsyncClient() as http:
+            resp = await http.post(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}/signeds3upload",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json",
+                },
+                json={"uploadKey": upload_key},
+            )
+            resp.raise_for_status()
+
+    async def download_file(self, object_key: str) -> bytes:
+        signed = await self.get_signed_download(object_key)
+        async with httpx.AsyncClient() as http:
+            resp = await http.get(signed)
+            resp.raise_for_status()
             return resp.content
 
-    async def submit_workitem(self, params: dict, f3d_oss_url: str) -> str:
+    async def get_owner(self) -> str:
+        """Owner string for namespacing AppBundles/Activities. Equals the
+        APS app nickname if set, otherwise the raw client_id."""
+        if self._owner:
+            return self._owner
         token = await self.get_token()
-        import json as _json
+        async with httpx.AsyncClient() as http:
+            resp = await http.get(
+                f"{APS_DA_BASE}/forgeapps/me",
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            resp.raise_for_status()
+            self._owner = resp.json()
+            return self._owner
 
-        activity_id = f"floetotto.FlexTableActivity+{self._activity_alias}"
+    async def submit_workitem(
+        self,
+        params: dict,
+        model_signed_get_url: str,
+        result_signed_put_url: str,
+    ) -> str:
+        token = await self.get_token()
+        owner = await self.get_owner()
+        activity_id = f"{owner}.FlexTableActivity+{self._activity_alias}"
 
         payload = {
             "activityId": activity_id,
@@ -88,16 +159,11 @@ class APSClient:
                     "url": "data:application/json," + _json.dumps(params),
                 },
                 "model": {
-                    "url": f3d_oss_url,
-                    "headers": {"Authorization": f"Bearer {token}"},
+                    "url": model_signed_get_url,
                     "verb": "get",
                 },
                 "result": {
-                    "url": f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/result_{{workItemId}}.step",
-                    "headers": {
-                        "Authorization": f"Bearer {token}",
-                        "Content-Type": "application/octet-stream",
-                    },
+                    "url": result_signed_put_url,
                     "verb": "put",
                 },
             },

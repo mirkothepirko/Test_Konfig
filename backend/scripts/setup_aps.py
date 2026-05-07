@@ -23,7 +23,18 @@ BUCKET = os.environ["APS_BUCKET"]
 ENGINE = "Autodesk.Fusion+Latest"
 BUNDLE_NAME = "FlexTableBundle"
 ACTIVITY_NAME = "FlexTableActivity"
-OWNER = "floetotto"
+
+
+async def get_owner(token: str) -> str:
+    """Owner namespace for activities/appbundles — APS nickname if set,
+    otherwise the raw client_id (returned by /forgeapps/me)."""
+    async with httpx.AsyncClient() as http:
+        resp = await http.get(
+            f"{APS_DA_BASE}/forgeapps/me",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        resp.raise_for_status()
+        return resp.json()
 
 
 async def get_token() -> str:
@@ -52,7 +63,7 @@ def zip_addin() -> str:
     return tmp.name
 
 
-async def register_appbundle(token: str) -> str:
+async def register_appbundle(token: str, owner: str) -> str:
     headers = {"Authorization": f"Bearer {token}"}
     async with httpx.AsyncClient() as http:
         payload = {
@@ -97,7 +108,7 @@ async def register_appbundle(token: str) -> str:
             )
         alias_resp.raise_for_status()
     print(f"  Alias '{BUNDLE_ALIAS}' -> version {version}")
-    return f"{OWNER}.{BUNDLE_NAME}+{BUNDLE_ALIAS}"
+    return f"{owner}.{BUNDLE_NAME}+{BUNDLE_ALIAS}"
 
 
 async def register_activity(token: str, bundle_ref: str):
@@ -149,8 +160,11 @@ async def main():
     token = await get_token()
     print("Token OK")
 
+    owner = await get_owner(token)
+    print(f"Owner namespace: {owner}")
+
     print(f"\nRegistering AppBundle '{BUNDLE_NAME}'...")
-    bundle_ref = await register_appbundle(token)
+    bundle_ref = await register_appbundle(token, owner)
     print(f"  Ref: {bundle_ref}")
 
     print(f"\nRegistering Activity '{ACTIVITY_NAME}'...")
