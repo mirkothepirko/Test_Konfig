@@ -79,7 +79,7 @@ class APSClient:
         token = await self.get_token()
         import json as _json
 
-        activity_id = f"test-konfig.FlexTableActivity+{self._activity_alias}"
+        activity_id = f"floetotto.FlexTableActivity+{self._activity_alias}"
 
         payload = {
             "activityId": activity_id,

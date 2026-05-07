@@ -20,10 +20,10 @@ CLIENT_SECRET = os.environ["APS_CLIENT_SECRET"]
 BUNDLE_ALIAS = os.environ.get("APS_APPBUNDLE_ALIAS", "prod")
 ACTIVITY_ALIAS = os.environ.get("APS_ACTIVITY_ALIAS", "prod")
 BUCKET = os.environ["APS_BUCKET"]
-ENGINE = "Autodesk.Fusion+2701_00"
+ENGINE = "Autodesk.Fusion+Latest"
 BUNDLE_NAME = "FlexTableBundle"
 ACTIVITY_NAME = "FlexTableActivity"
-OWNER = "test-konfig"
+OWNER = "floetotto"
 
 
 async def get_token() -> str:
