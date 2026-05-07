@@ -87,3 +87,44 @@ async def test_download_file(client):
     )
     data = await client.download_file("result_wi123.step")
     assert data == step_content
+
+APS_DA_BASE = "https://developer.api.autodesk.com/da/us-east/v3"
+
+@respx.mock
+async def test_submit_workitem_returns_id(client):
+    respx.post(APS_AUTH_URL).mock(return_value=httpx.Response(200, json={
+        "access_token": "tok", "expires_in": 3600, "token_type": "Bearer"
+    }))
+    respx.post(f"{APS_DA_BASE}/workitems").mock(
+        return_value=httpx.Response(200, json={"id": "wi_abc123", "status": "pending"})
+    )
+
+    params = {"breite": 1200, "tiefe": 600, "r_ecke": 0, "r_kante": 0, "dicke": 28.6}
+    f3d_url = f"{APS_OSS_BASE}/buckets/test-bucket/objects/flex_reference.f3d"
+
+    wi_id = await client.submit_workitem(params, f3d_url)
+    assert wi_id == "wi_abc123"
+
+@respx.mock
+async def test_poll_status_returns_status_string(client):
+    respx.post(APS_AUTH_URL).mock(return_value=httpx.Response(200, json={
+        "access_token": "tok", "expires_in": 3600, "token_type": "Bearer"
+    }))
+    respx.get(f"{APS_DA_BASE}/workitems/wi_abc123").mock(
+        return_value=httpx.Response(200, json={"id": "wi_abc123", "status": "inProgress"})
+    )
+
+    status = await client.poll_status("wi_abc123")
+    assert status == "inProgress"
+
+@respx.mock
+async def test_poll_status_succeeded(client):
+    respx.post(APS_AUTH_URL).mock(return_value=httpx.Response(200, json={
+        "access_token": "tok", "expires_in": 3600, "token_type": "Bearer"
+    }))
+    respx.get(f"{APS_DA_BASE}/workitems/wi_xyz").mock(
+        return_value=httpx.Response(200, json={"id": "wi_xyz", "status": "succeeded"})
+    )
+
+    status = await client.poll_status("wi_xyz")
+    assert status == "succeeded"

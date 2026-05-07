@@ -74,3 +74,50 @@ class APSClient:
             )
             resp.raise_for_status()
             return resp.content
+
+    async def submit_workitem(self, params: dict, f3d_oss_url: str) -> str:
+        token = await self.get_token()
+        import json as _json
+
+        activity_id = f"test-konfig.FlexTableActivity+{self._activity_alias}"
+
+        payload = {
+            "activityId": activity_id,
+            "arguments": {
+                "params": {
+                    "url": "data:application/json," + _json.dumps(params),
+                },
+                "model": {
+                    "url": f3d_oss_url,
+                    "headers": {"Authorization": f"Bearer {token}"},
+                    "verb": "get",
+                },
+                "result": {
+                    "url": f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/result_{{{{workItemId}}}}.step",
+                    "headers": {
+                        "Authorization": f"Bearer {token}",
+                        "Content-Type": "application/octet-stream",
+                    },
+                    "verb": "put",
+                },
+            },
+        }
+
+        async with httpx.AsyncClient() as http:
+            resp = await http.post(
+                f"{APS_DA_BASE}/workitems",
+                headers={"Authorization": f"Bearer {token}"},
+                json=payload,
+            )
+            resp.raise_for_status()
+            return resp.json()["id"]
+
+    async def poll_status(self, workitem_id: str) -> str:
+        token = await self.get_token()
+        async with httpx.AsyncClient() as http:
+            resp = await http.get(
+                f"{APS_DA_BASE}/workitems/{workitem_id}",
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            resp.raise_for_status()
+            return resp.json()["status"]
