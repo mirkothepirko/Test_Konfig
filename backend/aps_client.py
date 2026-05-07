@@ -37,3 +37,40 @@ class APSClient:
         self._token = body["access_token"]
         self._token_expiry = time.time() + body["expires_in"]
         return self._token
+
+    async def ensure_bucket(self) -> None:
+        token = await self.get_token()
+        async with httpx.AsyncClient() as http:
+            resp = await http.post(
+                f"{APS_OSS_BASE}/buckets",
+                headers={"Authorization": f"Bearer {token}"},
+                json={"bucketKey": self._bucket, "policyKey": "persistent"},
+            )
+            if resp.status_code not in (200, 409):
+                resp.raise_for_status()
+
+    async def upload_file(self, local_path: str, object_key: str) -> str:
+        token = await self.get_token()
+        with open(local_path, "rb") as f:
+            data = f.read()
+        async with httpx.AsyncClient() as http:
+            resp = await http.put(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/octet-stream",
+                },
+                content=data,
+            )
+            resp.raise_for_status()
+        return f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}"
+
+    async def download_file(self, object_key: str) -> bytes:
+        token = await self.get_token()
+        async with httpx.AsyncClient() as http:
+            resp = await http.get(
+                f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/{object_key}",
+                headers={"Authorization": f"Bearer {token}"},
+            )
+            resp.raise_for_status()
+            return resp.content
