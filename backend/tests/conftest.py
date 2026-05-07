@@ -11,3 +11,17 @@ def env_vars(monkeypatch):
     monkeypatch.setenv("APS_BUCKET", "test-bucket")
     monkeypatch.setenv("APS_APPBUNDLE_ALIAS", "prod")
     monkeypatch.setenv("APS_ACTIVITY_ALIAS", "prod")
+
+@pytest.fixture(autouse=True)
+def clear_workitems():
+    try:
+        from main import _workitem_outputs
+        _workitem_outputs.clear()
+    except ImportError:
+        pass
+    yield
+    try:
+        from main import _workitem_outputs
+        _workitem_outputs.clear()
+    except ImportError:
+        pass
