@@ -112,18 +112,17 @@ async def register_activity(token: str, bundle_ref: str):
             "result": {"description": "STEP output", "localName": "result.step", "verb": "put", "required": True},
         },
         "commandLine": [
-            "$(engine.path)\\FusionDA.exe",
-            "--script",
-            "$(appbundles[FlexTableBundle].path)\\flex_addin.py",
+            r"$(engine.path)\FusionDA.exe",
         ],
     }
     async with httpx.AsyncClient() as http:
         resp = await http.post(f"{APS_DA_BASE}/activities", headers=headers, json=activity)
         if resp.status_code == 409:
+            activity_version = {k: v for k, v in activity.items() if k != "id"}
             resp = await http.post(
                 f"{APS_DA_BASE}/activities/{ACTIVITY_NAME}/versions",
                 headers=headers,
-                json=activity,
+                json=activity_version,
             )
         resp.raise_for_status()
         version = resp.json()["version"]
