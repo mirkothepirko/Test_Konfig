@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLEX TABLE Konfigurator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+    .panel {
+      background: #fff;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+      border-right: 1px solid #e0e0e0;
+    }
+    .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #666; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; }
+    .field label span { font-weight: 400; color: #555; }
+    .field input[type=range] { width: 100%; accent-color: #1a1a1a; }
+    .field input[type=number] {
+      width: 80px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .row { display: flex; align-items: center; gap: 10px; }
+    .row input[type=range] { flex: 1; }
+    button {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    #btn-configure { background: #1a1a1a; color: #fff; }
+    #btn-download { background: #2d7d46; color: #fff; }
+    .status-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 32px;
+      font-size: 13px;
+      color: #555;
+    }
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid #ccc;
+      border-top-color: #1a1a1a;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner.active { display: block; }
+    #status-msg.error { color: #c0392b; }
+    #status-msg.success { color: #2d7d46; }
+    .preview {
+      background: #e8e8e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <header>FLEX TABLE — Konfigurator</header>
+  <main>
+    <div class="panel">
+      <h2>Parameter</h2>
+
+      <div class="field">
+        <label>Breite <span id="lbl-breite">1200 mm</span></label>
+        <div class="row">
+          <input type="range" id="sl-breite" min="600" max="1800" step="10" value="1200" />
+          <input type="number" id="in-breite" min="600" max="1800" step="10" value="1200" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Tiefe <span id="lbl-tiefe">600 mm</span></label>
+        <div class="row">
+          <input type="range" id="sl-tiefe" min="400" max="900" step="10" value="600" />
+          <input type="number" id="in-tiefe" min="400" max="900" step="10" value="600" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Eckenradius <span id="lbl-recke">0 mm</span></label>
+        <div class="row">
+          <input type="range" id="sl-recke" min="0" max="50" step="1" value="0" />
+          <input type="number" id="in-recke" min="0" max="50" step="1" value="0" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Kantenradius <span id="lbl-rkante">0 mm</span></label>
+        <div class="row">
+          <input type="range" id="sl-rkante" min="0" max="5" step="0.5" value="0" />
+          <input type="number" id="in-rkante" min="0" max="5" step="0.5" value="0" />
+        </div>
+      </div>
+
+      <div class="status-area">
+        <div class="spinner" id="spinner"></div>
+        <span id="status-msg">Bereit</span>
+      </div>
+
+      <button id="btn-configure">Für CNC exportieren</button>
+      <button id="btn-download" disabled>STEP herunterladen</button>
+    </div>
+
+    <div class="preview" id="preview"></div>
+  </main>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+
+    // === Three.js Live-Vorschau ===
+    const container = document.getElementById('preview');
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xe8e8e8);
+
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 10000);
+    camera.position.set(800, 600, 1200);
+    camera.lookAt(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(1, 2, 1);
+    scene.add(dirLight);
+
+    const geo = new THREE.BoxGeometry(1, 1, 1);
+    const mat = new THREE.MeshStandardMaterial({ color: 0xd4b896, roughness: 0.7 });
+    const mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+
+    function resize() {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function updateMesh(breite, tiefe) {
+      const DICKE = 28.6;
+      mesh.scale.set(breite, DICKE, tiefe);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mesh.rotation.y += 0.003;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // === Parameter-Kopplung ===
+    function linkParam(slId, inId, lblId) {
+      const sl = document.getElementById(slId);
+      const inp = document.getElementById(inId);
+      const lbl = document.getElementById(lblId);
+
+      function sync(val) {
+        sl.value = val;
+        inp.value = val;
+        lbl.textContent = val + ' mm';
+        updateMesh(
+          parseFloat(document.getElementById('sl-breite').value),
+          parseFloat(document.getElementById('sl-tiefe').value)
+        );
+      }
+      sl.addEventListener('input', () => sync(sl.value));
+      inp.addEventListener('change', () => {
+        const clamped = Math.min(Math.max(parseFloat(inp.value), parseFloat(inp.min)), parseFloat(inp.max));
+        sync(clamped);
+      });
+    }
+
+    linkParam('sl-breite', 'in-breite', 'lbl-breite');
+    linkParam('sl-tiefe', 'in-tiefe', 'lbl-tiefe');
+    linkParam('sl-recke', 'in-recke', 'lbl-recke');
+    linkParam('sl-rkante', 'in-rkante', 'lbl-rkante');
+    updateMesh(1200, 600);
+
+    // === API-Calls ===
+    const API = 'http://localhost:8000';
+    let currentWorkItemId = null;
+    let pollInterval = null;
+
+    const btnConfigure = document.getElementById('btn-configure');
+    const btnDownload = document.getElementById('btn-download');
+    const spinner = document.getElementById('spinner');
+    const statusMsg = document.getElementById('status-msg');
+
+    function setStatus(text, cls) {
+      statusMsg.textContent = text;
+      statusMsg.className = cls || '';
+    }
+
+    btnConfigure.addEventListener('click', async () => {
+      clearInterval(pollInterval);
+      btnDownload.disabled = true;
+      btnConfigure.disabled = true;
+      spinner.classList.add('active');
+      setStatus('Wird verarbeitet…');
+
+      const params = {
+        breite: parseFloat(document.getElementById('sl-breite').value),
+        tiefe: parseFloat(document.getElementById('sl-tiefe').value),
+        r_ecke: parseFloat(document.getElementById('sl-recke').value),
+        r_kante: parseFloat(document.getElementById('sl-rkante').value),
+      };
+
+      try {
+        const res = await fetch(`${API}/configure`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(params),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        currentWorkItemId = data.workItemId;
+        pollStatus();
+      } catch (e) {
+        spinner.classList.remove('active');
+        btnConfigure.disabled = false;
+        setStatus('Fehler: ' + e.message, 'error');
+      }
+    });
+
+    function pollStatus() {
+      pollInterval = setInterval(async () => {
+        try {
+          const res = await fetch(`${API}/status/${currentWorkItemId}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const { status } = await res.json();
+
+          if (status === 'succeeded') {
+            clearInterval(pollInterval);
+            spinner.classList.remove('active');
+            btnConfigure.disabled = false;
+            btnDownload.disabled = false;
+            setStatus('Fertig — STEP bereit.', 'success');
+          } else if (status === 'failed') {
+            clearInterval(pollInterval);
+            spinner.classList.remove('active');
+            btnConfigure.disabled = false;
+            setStatus('Fehler bei der Verarbeitung.', 'error');
+          }
+          // pending / inProgress → weiter pollen
+        } catch (e) {
+          clearInterval(pollInterval);
+          spinner.classList.remove('active');
+          btnConfigure.disabled = false;
+          setStatus('Polling-Fehler: ' + e.message, 'error');
+        }
+      }, 2000);
+    }
+
+    btnDownload.addEventListener('click', async () => {
+      if (!currentWorkItemId) return;
+      const res = await fetch(`${API}/download/${currentWorkItemId}`);
+      if (!res.ok) { setStatus('Download fehlgeschlagen.', 'error'); return; }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `flex_${currentWorkItemId}.step`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
