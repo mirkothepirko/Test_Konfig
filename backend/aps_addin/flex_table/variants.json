@@ -1,0 +1,30 @@
+{
+  "default_variant": "standard",
+  "variants": [
+    {
+      "id": "standard",
+      "label": "Standard (Dekor + RAIL)",
+      "features": ["Dekoelement", "Bohrung6", "Hole2", "RAIL"]
+    },
+    {
+      "id": "schlicht",
+      "label": "Schlicht (nur Funktionsbohrungen)",
+      "features": ["Bohrung6", "RAIL"]
+    },
+    {
+      "id": "mit_gratnells",
+      "label": "Mit Gratnells-Halterung",
+      "features": ["Dekoelement", "Bohrung6", "Hole2", "RAIL", "Gratnells"]
+    },
+    {
+      "id": "mit_kabelkanal",
+      "label": "Mit Kabelkanal",
+      "features": ["Dekoelement", "Bohrung6", "Hole2", "RAIL", "Kabelkanal"]
+    },
+    {
+      "id": "evo_cutouts",
+      "label": "Mit Evo-Cutouts",
+      "features": ["Bohrung6", "Hole2", "RAIL", "Evo_Circle_left", "Evo_Circle_mid", "Evo_Circle_right"]
+    }
+  ]
+}

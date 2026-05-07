@@ -1,0 +1,6698 @@
+{
+  "schema": "flex_features.v1",
+  "user_parameters": [
+    {
+      "name": "Breite",
+      "expression": "1200 mm",
+      "value_mm": 1200.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "Tiefe",
+      "expression": "600 mm",
+      "value_mm": 600.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "B_Kabelkanal",
+      "expression": "Breite - 350 mm",
+      "value_mm": 850.0,
+      "unit": "mm",
+      "comment": "Gesamtbreite des Kabelkanals"
+    },
+    {
+      "name": "KK_Bohrlochabstand",
+      "expression": "2 / 3 * ( Breite - 350 mm )",
+      "value_mm": 566.6667,
+      "unit": "mm",
+      "comment": "X-Distanz zwischen den Bohrlöchern des Kabalkanals"
+    },
+    {
+      "name": "RAIL_Mittelabstand",
+      "expression": "if(Breite >= 1200 mm; ( Breite - 900 mm ) / 6; ( Breite - ( 450 / 2 ) * 1 mm ))",
+      "value_mm": 50.0,
+      "unit": "mm",
+      "comment": "Bohrbedingung RAIL für Einzel/Doppeltische"
+    },
+    {
+      "name": "Gratnells_Mitte",
+      "expression": "if(Breite >= 1200 mm; ( Breite - b_Gratnells * 2 ) / 3; ( Breite - ( b_Gratnells ) ))",
+      "value_mm": 216.0,
+      "unit": "mm",
+      "comment": "Bohrbedingung Gratnells für Einzel/Doppeltische"
+    },
+    {
+      "name": "Gratnells_vorn",
+      "expression": "60 mm",
+      "value_mm": 60.0,
+      "unit": "mm",
+      "comment": "Distanz"
+    },
+    {
+      "name": "b_Gratnells",
+      "expression": "276 mm",
+      "value_mm": 276.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "a_Gratnells_Reihe",
+      "expression": "135 mm",
+      "value_mm": 135.0,
+      "unit": "mm",
+      "comment": "Reihenabstand der Gratnells Körnungen"
+    },
+    {
+      "name": "d_Körnung",
+      "expression": "3 mm",
+      "value_mm": 3.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "t_Körnung",
+      "expression": "1 mm",
+      "value_mm": 1.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "R_Ecke",
+      "expression": "50 mm",
+      "value_mm": 50.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "R_Kante",
+      "expression": "4 mm",
+      "value_mm": 4.0,
+      "unit": "mm",
+      "comment": ""
+    },
+    {
+      "name": "Dicke",
+      "expression": "28.6 mm",
+      "value_mm": 28.6,
+      "unit": "mm",
+      "comment": ""
+    }
+  ],
+  "plate_bbox_mm": {
+    "min": {
+      "x": -600.0,
+      "y": -300.0,
+      "z": 0.0
+    },
+    "max": {
+      "x": 600.0,
+      "y": 300.0,
+      "z": 28.6
+    },
+    "center": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 14.3
+    },
+    "size": {
+      "x": 1200.0,
+      "y": 600.0,
+      "z": 28.6
+    }
+  },
+  "bodies": [
+    {
+      "name": "Body1",
+      "is_visible": true,
+      "bbox_mm": {
+        "min": {
+          "x": -600.0,
+          "y": -300.0,
+          "z": 0.0
+        },
+        "max": {
+          "x": 600.0,
+          "y": 300.0,
+          "z": 28.6
+        },
+        "center": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 14.3
+        },
+        "size": {
+          "x": 1200.0,
+          "y": 600.0,
+          "z": 28.6
+        }
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "index": 0,
+      "name": "Sketch1",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 1,
+      "name": "Extrude1",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::ExtrudeFeature"
+    },
+    {
+      "index": 2,
+      "name": "Fillet1",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::FilletFeature"
+    },
+    {
+      "index": 3,
+      "name": "Sketch3",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 4,
+      "name": "Sketch2",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 5,
+      "name": "Dekoelement",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 13.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 16.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 550.0,
+              "y": 250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": 550.0,
+              "y": -250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": -250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": 250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "name": "Bohrung6",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 5.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::OneSideToExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 550.0,
+              "y": 250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 550.0,
+              "y": -250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": -250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": 250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "name": "Hole2",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 531.8404,
+              "y": 285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1131.8404,
+              "from_max_x": 68.1596,
+              "from_min_y": 585.6403,
+              "from_max_y": 14.3597,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 510.4925,
+              "y": 243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1110.4925,
+              "from_max_x": 89.5075,
+              "from_min_y": 543.7426,
+              "from_max_y": 56.2574,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 543.7426,
+              "y": 210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1143.7426,
+              "from_max_x": 56.2574,
+              "from_min_y": 510.4925,
+              "from_max_y": 89.5075,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 585.6403,
+              "y": 231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1185.6403,
+              "from_max_x": 14.3597,
+              "from_min_y": 531.8404,
+              "from_max_y": 68.1596,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 578.2843,
+              "y": 278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1178.2843,
+              "from_max_x": 21.7157,
+              "from_min_y": 578.2843,
+              "from_max_y": 21.7157,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 578.2843,
+              "y": -278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1178.2843,
+              "from_max_x": 21.7157,
+              "from_min_y": 21.7157,
+              "from_max_y": 578.2843,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 585.6403,
+              "y": -231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1185.6403,
+              "from_max_x": 14.3597,
+              "from_min_y": 68.1596,
+              "from_max_y": 531.8404,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 543.7426,
+              "y": -210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1143.7426,
+              "from_max_x": 56.2574,
+              "from_min_y": 89.5075,
+              "from_max_y": 510.4925,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 510.4925,
+              "y": -243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1110.4925,
+              "from_max_x": 89.5075,
+              "from_min_y": 56.2574,
+              "from_max_y": 543.7426,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 531.8404,
+              "y": -285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1131.8404,
+              "from_max_x": 68.1596,
+              "from_min_y": 14.3597,
+              "from_max_y": 585.6403,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -585.6403,
+              "y": 231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 14.3597,
+              "from_max_x": 1185.6403,
+              "from_min_y": 531.8404,
+              "from_max_y": 68.1596,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -578.2843,
+              "y": 278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 21.7157,
+              "from_max_x": 1178.2843,
+              "from_min_y": 578.2843,
+              "from_max_y": 21.7157,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -531.8404,
+              "y": 285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 68.1596,
+              "from_max_x": 1131.8404,
+              "from_min_y": 585.6403,
+              "from_max_y": 14.3597,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -510.4925,
+              "y": 243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 89.5075,
+              "from_max_x": 1110.4925,
+              "from_min_y": 543.7426,
+              "from_max_y": 56.2574,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -543.7426,
+              "y": 210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 56.2574,
+              "from_max_x": 1143.7426,
+              "from_min_y": 510.4925,
+              "from_max_y": 89.5075,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -585.6403,
+              "y": -231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 14.3597,
+              "from_max_x": 1185.6403,
+              "from_min_y": 68.1596,
+              "from_max_y": 531.8404,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -578.2843,
+              "y": -278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 21.7157,
+              "from_max_x": 1178.2843,
+              "from_min_y": 21.7157,
+              "from_max_y": 578.2843,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -531.8404,
+              "y": -285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 68.1596,
+              "from_max_x": 1131.8404,
+              "from_min_y": 14.3597,
+              "from_max_y": 585.6403,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -510.4925,
+              "y": -243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 89.5075,
+              "from_max_x": 1110.4925,
+              "from_min_y": 56.2574,
+              "from_max_y": 543.7426,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -543.7426,
+              "y": -210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 56.2574,
+              "from_max_x": 1143.7426,
+              "from_min_y": 89.5075,
+              "from_max_y": 510.4925,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "name": "Gratnells",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 9,
+      "name": "Gratnells",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -384.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -384.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -384.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "name": "Bohrungen Kabelkanal",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 11,
+      "name": "Extrude3",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::ExtrudeFeature"
+    },
+    {
+      "index": 12,
+      "name": "Chamfer1",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::ChamferFeature"
+    },
+    {
+      "index": 13,
+      "name": "Kabelkanal",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -245.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 55.0,
+              "from_max_y": 545.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -226.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 73.5,
+              "from_max_y": 526.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -173.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 126.5,
+              "from_max_y": 473.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -155.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 145.0,
+              "from_max_y": 455.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -245.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 55.0,
+              "from_max_y": 545.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -226.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 73.5,
+              "from_max_y": 526.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -173.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 126.5,
+              "from_max_y": 473.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -155.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 145.0,
+              "from_max_y": 455.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 14,
+      "name": "Rail",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 15,
+      "name": "RAIL",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -475.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 125.0,
+              "from_max_x": 1075.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -25.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 575.0,
+              "from_max_x": 625.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -25.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 575.0,
+              "from_max_x": 625.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -475.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 125.0,
+              "from_max_x": 1075.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 25.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 625.0,
+              "from_max_x": 575.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 25.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 625.0,
+              "from_max_x": 575.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 475.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1075.0,
+              "from_max_x": 125.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 475.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1075.0,
+              "from_max_x": 125.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "index": 16,
+      "name": "Evo_Backflip",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 17,
+      "name": "Extrude4",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::ExtrudeFeature"
+    },
+    {
+      "index": 18,
+      "name": "Extrude5",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::ExtrudeFeature"
+    },
+    {
+      "index": 19,
+      "name": "Evo_Circle",
+      "is_suppressed": false,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::Sketch"
+    },
+    {
+      "index": 20,
+      "name": "Evo_Circle_mid",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -0.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 600.0,
+              "from_max_x": 600.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    },
+    {
+      "index": 21,
+      "name": "Evo_Circle_left",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 399.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 999.0,
+              "from_max_x": 201.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    },
+    {
+      "index": 22,
+      "name": "Evo_Circle_right",
+      "is_suppressed": true,
+      "is_rolled_back": false,
+      "type": "adsk::fusion::HoleFeature",
+      "detail": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -399.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 201.0,
+              "from_max_x": 999.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    }
+  ],
+  "holes": [
+    {
+      "name": "Dekoelement",
+      "is_suppressed": false,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 13.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 16.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 550.0,
+              "y": 250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": 550.0,
+              "y": -250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": -250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": 250.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "Bohrung6",
+      "is_suppressed": false,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 5.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::OneSideToExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 550.0,
+              "y": 250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 550.0,
+              "y": -250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1150.0,
+              "from_max_x": 50.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": -250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 50.0,
+              "from_max_y": 550.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -550.0,
+              "y": 250.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 50.0,
+              "from_max_x": 1150.0,
+              "from_min_y": 550.0,
+              "from_max_y": 50.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "Hole2",
+      "is_suppressed": false,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 531.8404,
+              "y": 285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1131.8404,
+              "from_max_x": 68.1596,
+              "from_min_y": 585.6403,
+              "from_max_y": 14.3597,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 510.4925,
+              "y": 243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1110.4925,
+              "from_max_x": 89.5075,
+              "from_min_y": 543.7426,
+              "from_max_y": 56.2574,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 543.7426,
+              "y": 210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1143.7426,
+              "from_max_x": 56.2574,
+              "from_min_y": 510.4925,
+              "from_max_y": 89.5075,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 585.6403,
+              "y": 231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1185.6403,
+              "from_max_x": 14.3597,
+              "from_min_y": 531.8404,
+              "from_max_y": 68.1596,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 578.2843,
+              "y": 278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1178.2843,
+              "from_max_x": 21.7157,
+              "from_min_y": 578.2843,
+              "from_max_y": 21.7157,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 578.2843,
+              "y": -278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1178.2843,
+              "from_max_x": 21.7157,
+              "from_min_y": 21.7157,
+              "from_max_y": 578.2843,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 585.6403,
+              "y": -231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1185.6403,
+              "from_max_x": 14.3597,
+              "from_min_y": 68.1596,
+              "from_max_y": 531.8404,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 543.7426,
+              "y": -210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1143.7426,
+              "from_max_x": 56.2574,
+              "from_min_y": 89.5075,
+              "from_max_y": 510.4925,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 510.4925,
+              "y": -243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1110.4925,
+              "from_max_x": 89.5075,
+              "from_min_y": 56.2574,
+              "from_max_y": 543.7426,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 531.8404,
+              "y": -285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1131.8404,
+              "from_max_x": 68.1596,
+              "from_min_y": 14.3597,
+              "from_max_y": 585.6403,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -585.6403,
+              "y": 231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 14.3597,
+              "from_max_x": 1185.6403,
+              "from_min_y": 531.8404,
+              "from_max_y": 68.1596,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -578.2843,
+              "y": 278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 21.7157,
+              "from_max_x": 1178.2843,
+              "from_min_y": 578.2843,
+              "from_max_y": 21.7157,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -531.8404,
+              "y": 285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 68.1596,
+              "from_max_x": 1131.8404,
+              "from_min_y": 585.6403,
+              "from_max_y": 14.3597,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -510.4925,
+              "y": 243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 89.5075,
+              "from_max_x": 1110.4925,
+              "from_min_y": 543.7426,
+              "from_max_y": 56.2574,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -543.7426,
+              "y": 210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 56.2574,
+              "from_max_x": 1143.7426,
+              "from_min_y": 510.4925,
+              "from_max_y": 89.5075,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -585.6403,
+              "y": -231.8404,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 14.3597,
+              "from_max_x": 1185.6403,
+              "from_min_y": 68.1596,
+              "from_max_y": 531.8404,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -578.2843,
+              "y": -278.2843,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 21.7157,
+              "from_max_x": 1178.2843,
+              "from_min_y": 21.7157,
+              "from_max_y": 578.2843,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -531.8404,
+              "y": -285.6403,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 68.1596,
+              "from_max_x": 1131.8404,
+              "from_min_y": 14.3597,
+              "from_max_y": 585.6403,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -510.4925,
+              "y": -243.7426,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 89.5075,
+              "from_max_x": 1110.4925,
+              "from_min_y": 56.2574,
+              "from_max_y": 543.7426,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -543.7426,
+              "y": -210.4925,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 56.2574,
+              "from_max_x": 1143.7426,
+              "from_min_y": 89.5075,
+              "from_max_y": 510.4925,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "Gratnells",
+      "is_suppressed": true,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 3.141592653589793,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -384.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -384.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -384.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 216.0,
+              "from_max_x": 984.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -108.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 492.0,
+              "from_max_x": 708.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 108.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 708.0,
+              "from_max_x": 492.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": -34.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 266.0,
+              "from_max_y": 334.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": 101.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 401.0,
+              "from_max_y": 199.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 384.0,
+              "y": 236.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 984.0,
+              "from_max_x": 216.0,
+              "from_min_y": 536.0,
+              "from_max_y": 64.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "Kabelkanal",
+      "is_suppressed": true,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -245.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 55.0,
+              "from_max_y": 545.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -226.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 73.5,
+              "from_max_y": 526.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -173.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 126.5,
+              "from_max_y": 473.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -283.3333,
+              "y": -155.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 316.6667,
+              "from_max_x": 883.3333,
+              "from_min_y": 145.0,
+              "from_max_y": 455.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -245.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 55.0,
+              "from_max_y": 545.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -226.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 73.5,
+              "from_max_y": 526.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -173.5,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 126.5,
+              "from_max_y": 473.5,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 283.3333,
+              "y": -155.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 883.3333,
+              "from_max_x": 316.6667,
+              "from_min_y": 145.0,
+              "from_max_y": 455.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "RAIL",
+      "is_suppressed": false,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 3.0,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::DistanceExtentDefinition",
+        "extent_distance_mm": 1.0,
+        "holePositionDefinition_type": "adsk::fusion::SketchPointsHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -475.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 125.0,
+              "from_max_x": 1075.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -25.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 575.0,
+              "from_max_x": 625.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -25.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 575.0,
+              "from_max_x": 625.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": -475.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 125.0,
+              "from_max_x": 1075.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 25.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 625.0,
+              "from_max_x": 575.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 25.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 625.0,
+              "from_max_x": 575.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 475.0,
+              "y": 240.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1075.0,
+              "from_max_x": 125.0,
+              "from_min_y": 540.0,
+              "from_max_y": 60.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          },
+          {
+            "world": {
+              "x": 475.0,
+              "y": -40.0,
+              "z": 0.0
+            },
+            "offsets": {
+              "from_min_x": 1075.0,
+              "from_max_x": 125.0,
+              "from_min_y": 260.0,
+              "from_max_y": 340.0,
+              "from_min_z": 0.0,
+              "from_max_z": 28.6
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoints"
+        ]
+      }
+    },
+    {
+      "name": "Evo_Circle_mid",
+      "is_suppressed": true,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -0.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 600.0,
+              "from_max_x": 600.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    },
+    {
+      "name": "Evo_Circle_left",
+      "is_suppressed": true,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": 399.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 999.0,
+              "from_max_x": 201.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    },
+    {
+      "name": "Evo_Circle_right",
+      "is_suppressed": true,
+      "data": {
+        "feature_kind": "hole",
+        "hole_diameter_mm": 80.3,
+        "hole_tip_angle_rad": 2.059488517353309,
+        "extent_type": "adsk::fusion::AllExtentDefinition",
+        "holePositionDefinition_type": "adsk::fusion::SketchPointHolePositionDefinition",
+        "positions": [
+          {
+            "world": {
+              "x": -399.0,
+              "y": -200.0,
+              "z": 28.6
+            },
+            "offsets": {
+              "from_min_x": 201.0,
+              "from_max_x": 999.0,
+              "from_min_y": 100.0,
+              "from_max_y": 500.0,
+              "from_min_z": 28.6,
+              "from_max_z": 0.0
+            }
+          }
+        ],
+        "position_strategies": [
+          "hpd.sketchPoint"
+        ]
+      }
+    }
+  ],
+  "sketches": [
+    {
+      "name": "Sketch1",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -600.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 0.0,
+            "from_max_x": 1200.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 600.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1200.0,
+            "from_max_x": 0.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 600.0,
+            "y": 300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1200.0,
+            "from_max_x": -0.0,
+            "from_min_y": 600.0,
+            "from_max_y": -0.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -600.0,
+            "y": 300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": -0.0,
+            "from_max_x": 1200.0,
+            "from_min_y": 600.0,
+            "from_max_y": 0.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sketch3",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 2.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 302.5,
+            "from_max_y": 297.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 20.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 320.0,
+            "from_max_y": 280.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 20.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 620.0,
+            "from_max_x": 580.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 2.5,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 602.5,
+            "from_max_x": 597.5,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sketch2",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -600.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": -0.0,
+            "from_max_x": 1200.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 600.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1200.0,
+            "from_max_x": -0.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 600.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1200.0,
+            "from_max_x": 0.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -481.3158,
+            "y": -302.106,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 118.6842,
+            "from_max_x": 1081.3158,
+            "from_min_y": -2.106,
+            "from_max_y": 602.106,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "name": "Gratnells",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -384.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 216.0,
+            "from_max_x": 984.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -108.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 492.0,
+            "from_max_x": 708.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -108.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 492.0,
+            "from_max_x": 708.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -384.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 216.0,
+            "from_max_x": 984.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -108.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 492.0,
+            "from_max_x": 708.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -384.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 216.0,
+            "from_max_x": 984.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -384.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 216.0,
+            "from_max_x": 984.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -108.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 492.0,
+            "from_max_x": 708.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -384.0,
+            "y": 101.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 216.0,
+            "from_max_x": 984.0,
+            "from_min_y": 401.0,
+            "from_max_y": 199.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -246.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 354.0,
+            "from_max_x": 846.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -246.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 354.0,
+            "from_max_x": 846.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -108.0,
+            "y": 101.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 492.0,
+            "from_max_x": 708.0,
+            "from_min_y": 401.0,
+            "from_max_y": 199.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 246.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 846.0,
+            "from_max_x": 354.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 108.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 708.0,
+            "from_max_x": 492.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 384.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 984.0,
+            "from_max_x": 216.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 108.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 708.0,
+            "from_max_x": 492.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 246.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 846.0,
+            "from_max_x": 354.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 384.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 984.0,
+            "from_max_x": 216.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 384.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 984.0,
+            "from_max_x": 216.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 108.0,
+            "y": 236.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 708.0,
+            "from_max_x": 492.0,
+            "from_min_y": 536.0,
+            "from_max_y": 64.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 108.0,
+            "y": 101.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 708.0,
+            "from_max_x": 492.0,
+            "from_min_y": 401.0,
+            "from_max_y": 199.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 108.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 708.0,
+            "from_max_x": 492.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 384.0,
+            "y": -34.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 984.0,
+            "from_max_x": 216.0,
+            "from_min_y": 266.0,
+            "from_max_y": 334.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 384.0,
+            "y": 101.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 984.0,
+            "from_max_x": 216.0,
+            "from_min_y": 401.0,
+            "from_max_y": 199.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bohrungen Kabelkanal",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 201.0,
+            "from_max_x": 999.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 999.0,
+            "from_max_x": 201.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -283.3333,
+            "y": -155.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 316.6667,
+            "from_max_x": 883.3333,
+            "from_min_y": 145.0,
+            "from_max_y": 455.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 283.3333,
+            "y": -155.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 883.3333,
+            "from_max_x": 316.6667,
+            "from_min_y": 145.0,
+            "from_max_y": 455.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 283.3333,
+            "y": -245.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 883.3333,
+            "from_max_x": 316.6667,
+            "from_min_y": 55.0,
+            "from_max_y": 545.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -283.3333,
+            "y": -245.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 316.6667,
+            "from_max_x": 883.3333,
+            "from_min_y": 55.0,
+            "from_max_y": 545.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -283.3333,
+            "y": -173.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 316.6667,
+            "from_max_x": 883.3333,
+            "from_min_y": 126.5,
+            "from_max_y": 473.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 283.3333,
+            "y": -173.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 883.3333,
+            "from_max_x": 316.6667,
+            "from_min_y": 126.5,
+            "from_max_y": 473.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 283.3333,
+            "y": -226.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 883.3333,
+            "from_max_x": 316.6667,
+            "from_min_y": 73.5,
+            "from_max_y": 526.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -283.3333,
+            "y": -226.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 316.6667,
+            "from_max_x": 883.3333,
+            "from_min_y": 73.5,
+            "from_max_y": 526.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 201.0,
+            "from_max_x": 999.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 999.0,
+            "from_max_x": 201.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -393.5,
+            "y": -194.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 206.5,
+            "from_max_x": 993.5,
+            "from_min_y": 105.5,
+            "from_max_y": 494.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 393.5,
+            "y": -194.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 993.5,
+            "from_max_x": 206.5,
+            "from_min_y": 105.5,
+            "from_max_y": 494.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 393.5,
+            "y": -205.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 993.5,
+            "from_max_x": 206.5,
+            "from_min_y": 94.5,
+            "from_max_y": 505.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -393.5,
+            "y": -205.5,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 206.5,
+            "from_max_x": 993.5,
+            "from_min_y": 94.5,
+            "from_max_y": 505.5,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -393.5,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 206.5,
+            "from_max_x": 993.5,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 393.5,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 993.5,
+            "from_max_x": 206.5,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 201.0,
+            "from_max_x": 999.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 399.0,
+            "y": -200.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 999.0,
+            "from_max_x": 201.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rail",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": -285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 14.3597,
+            "from_max_y": 585.6403,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": -210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 89.5075,
+            "from_max_y": 510.4925,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": 243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 543.7426,
+            "from_max_y": 56.2574,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1131.8404,
+            "from_max_x": 68.1596,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1143.7426,
+            "from_max_x": 56.2574,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 578.2843,
+            "y": 278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1178.2843,
+            "from_max_x": 21.7157,
+            "from_min_y": 578.2843,
+            "from_max_y": 21.7157,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 585.6403,
+            "y": -231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1185.6403,
+            "from_max_x": 14.3597,
+            "from_min_y": 68.1596,
+            "from_max_y": 531.8404,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1110.4925,
+            "from_max_x": 89.5075,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -585.6403,
+            "y": 231.8404,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 14.3597,
+            "from_max_x": 1185.6403,
+            "from_min_y": 531.8404,
+            "from_max_y": 68.1596,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -531.8404,
+            "y": 285.6403,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 68.1596,
+            "from_max_x": 1131.8404,
+            "from_min_y": 585.6403,
+            "from_max_y": 14.3597,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -543.7426,
+            "y": 210.4925,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 56.2574,
+            "from_max_x": 1143.7426,
+            "from_min_y": 510.4925,
+            "from_max_y": 89.5075,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -578.2843,
+            "y": -278.2843,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 21.7157,
+            "from_max_x": 1178.2843,
+            "from_min_y": 21.7157,
+            "from_max_y": 578.2843,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -510.4925,
+            "y": -243.7426,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 89.5075,
+            "from_max_x": 1110.4925,
+            "from_min_y": 56.2574,
+            "from_max_y": 543.7426,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 0.0,
+            "y": 296.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -475.0,
+            "y": 240.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 125.0,
+            "from_max_x": 1075.0,
+            "from_min_y": 540.0,
+            "from_max_y": 60.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -25.0,
+            "y": 240.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 575.0,
+            "from_max_x": 625.0,
+            "from_min_y": 540.0,
+            "from_max_y": 60.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -25.0,
+            "y": -40.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 575.0,
+            "from_max_x": 625.0,
+            "from_min_y": 260.0,
+            "from_max_y": 340.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -475.0,
+            "y": -40.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 125.0,
+            "from_max_x": 1075.0,
+            "from_min_y": 260.0,
+            "from_max_y": 340.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 25.0,
+            "y": 240.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 625.0,
+            "from_max_x": 575.0,
+            "from_min_y": 540.0,
+            "from_max_y": 60.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 475.0,
+            "y": 240.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1075.0,
+            "from_max_x": 125.0,
+            "from_min_y": 540.0,
+            "from_max_y": 60.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 475.0,
+            "y": -40.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1075.0,
+            "from_max_x": 125.0,
+            "from_min_y": 260.0,
+            "from_max_y": 340.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 25.0,
+            "y": -40.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 625.0,
+            "from_max_x": 575.0,
+            "from_min_y": 260.0,
+            "from_max_y": 340.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 600.0,
+            "from_max_y": -0.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 300.0,
+            "z": 0.0
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 600.0,
+            "from_max_y": -0.0,
+            "from_min_z": 0.0,
+            "from_max_z": 28.6
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evo_Backflip",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -107.65,
+            "y": -116.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 492.35,
+            "from_max_x": 707.65,
+            "from_min_y": 183.05,
+            "from_max_y": 416.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 107.65,
+            "y": -116.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 707.65,
+            "from_max_x": 492.35,
+            "from_min_y": 183.05,
+            "from_max_y": 416.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -107.65,
+            "y": -205.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 492.35,
+            "from_max_x": 707.65,
+            "from_min_y": 94.75,
+            "from_max_y": 505.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -3.7448,
+            "y": 153.2466,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 596.2552,
+            "from_max_x": 603.7448,
+            "from_min_y": 453.2466,
+            "from_max_y": 146.7534,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -110.65,
+            "y": -110.7,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 489.35,
+            "from_max_x": 710.65,
+            "from_min_y": 189.3,
+            "from_max_y": 410.7,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -113.15,
+            "y": -110.7,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 486.85,
+            "from_max_x": 713.15,
+            "from_min_y": 189.3,
+            "from_max_y": 410.7,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 113.15,
+            "y": -161.1,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 713.15,
+            "from_max_x": 486.85,
+            "from_min_y": 138.9,
+            "from_max_y": 461.1,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 107.65,
+            "y": -122.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 707.65,
+            "from_max_x": 492.35,
+            "from_min_y": 177.75,
+            "from_max_y": 422.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 113.15,
+            "y": -211.5,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 713.15,
+            "from_max_x": 486.85,
+            "from_min_y": 88.5,
+            "from_max_y": 511.5,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 110.65,
+            "y": -108.2,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 710.65,
+            "from_max_x": 489.35,
+            "from_min_y": 191.8,
+            "from_max_y": 408.2,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -113.15,
+            "y": -161.1,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 486.85,
+            "from_max_x": 713.15,
+            "from_min_y": 138.9,
+            "from_max_y": 461.1,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -110.65,
+            "y": -108.2,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 489.35,
+            "from_max_x": 710.65,
+            "from_min_y": 191.8,
+            "from_max_y": 408.2,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 113.15,
+            "y": -110.7,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 713.15,
+            "from_max_x": 486.85,
+            "from_min_y": 189.3,
+            "from_max_y": 410.7,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 113.15,
+            "y": -108.2,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 713.15,
+            "from_max_x": 486.85,
+            "from_min_y": 191.8,
+            "from_max_y": 408.2,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -214.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 86.0,
+            "from_max_y": 514.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 110.65,
+            "y": -211.5,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 710.65,
+            "from_max_x": 489.35,
+            "from_min_y": 88.5,
+            "from_max_y": 511.5,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 110.65,
+            "y": -214.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 710.65,
+            "from_max_x": 489.35,
+            "from_min_y": 86.0,
+            "from_max_y": 514.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -113.15,
+            "y": -108.2,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 486.85,
+            "from_max_x": 713.15,
+            "from_min_y": 191.8,
+            "from_max_y": 408.2,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -113.15,
+            "y": -214.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 486.85,
+            "from_max_x": 713.15,
+            "from_min_y": 86.0,
+            "from_max_y": 514.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -110.65,
+            "y": -214.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 489.35,
+            "from_max_x": 710.65,
+            "from_min_y": 86.0,
+            "from_max_y": 514.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -113.15,
+            "y": -211.5,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 486.85,
+            "from_max_x": 713.15,
+            "from_min_y": 88.5,
+            "from_max_y": 511.5,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 110.65,
+            "y": -110.7,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 710.65,
+            "from_max_x": 489.35,
+            "from_min_y": 189.3,
+            "from_max_y": 410.7,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 102.35,
+            "y": -122.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 702.35,
+            "from_max_x": 497.65,
+            "from_min_y": 177.75,
+            "from_max_y": 422.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -110.65,
+            "y": -211.5,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 489.35,
+            "from_max_x": 710.65,
+            "from_min_y": 88.5,
+            "from_max_y": 511.5,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 107.65,
+            "y": -199.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 707.65,
+            "from_max_x": 492.35,
+            "from_min_y": 100.05,
+            "from_max_y": 499.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 102.35,
+            "y": -199.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 702.35,
+            "from_max_x": 497.65,
+            "from_min_y": 100.05,
+            "from_max_y": 499.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 102.35,
+            "y": -205.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 702.35,
+            "from_max_x": 497.65,
+            "from_min_y": 94.75,
+            "from_max_y": 505.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -300.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -107.65,
+            "y": -122.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 492.35,
+            "from_max_x": 707.65,
+            "from_min_y": 177.75,
+            "from_max_y": 422.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -102.35,
+            "y": -116.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 497.65,
+            "from_max_x": 702.35,
+            "from_min_y": 183.05,
+            "from_max_y": 416.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -102.35,
+            "y": -122.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 497.65,
+            "from_max_x": 702.35,
+            "from_min_y": 177.75,
+            "from_max_y": 422.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -102.35,
+            "y": -199.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 497.65,
+            "from_max_x": 702.35,
+            "from_min_y": 100.05,
+            "from_max_y": 499.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 102.35,
+            "y": -116.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 702.35,
+            "from_max_x": 497.65,
+            "from_min_y": 183.05,
+            "from_max_y": 416.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -107.65,
+            "y": -199.95,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 492.35,
+            "from_max_x": 707.65,
+            "from_min_y": 100.05,
+            "from_max_y": 499.95,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -102.35,
+            "y": -205.25,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 497.65,
+            "from_max_x": 702.35,
+            "from_min_y": 94.75,
+            "from_max_y": 505.25,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -300.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -300.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 0.0,
+            "from_max_y": 600.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -108.2,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 191.8,
+            "from_max_y": 408.2,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "name": "Evo_Circle",
+      "is_visible": false,
+      "is_construction": null,
+      "points": [
+        {
+          "world": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 300.0,
+            "from_max_y": 300.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": -296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": -296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 4.0,
+            "from_max_y": 596.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": -250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 50.0,
+            "from_max_y": 550.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 596.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1196.0,
+            "from_max_x": 4.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 550.0,
+            "y": 296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 1150.0,
+            "from_max_x": 50.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -550.0,
+            "y": 296.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 50.0,
+            "from_max_x": 1150.0,
+            "from_min_y": 596.0,
+            "from_max_y": 4.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -596.0,
+            "y": 250.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 4.0,
+            "from_max_x": 1196.0,
+            "from_min_y": 550.0,
+            "from_max_y": 50.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -399.0,
+            "y": -200.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 201.0,
+            "from_max_x": 999.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": -0.0,
+            "y": -200.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 600.0,
+            "from_max_x": 600.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        },
+        {
+          "world": {
+            "x": 399.0,
+            "y": -200.0,
+            "z": 28.6
+          },
+          "offsets": {
+            "from_min_x": 999.0,
+            "from_max_x": 201.0,
+            "from_min_y": 100.0,
+            "from_max_y": 500.0,
+            "from_min_z": 28.6,
+            "from_max_z": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

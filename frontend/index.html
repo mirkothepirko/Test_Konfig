@@ -42,13 +42,15 @@
     .field label { font-size: 13px; font-weight: 500; display: flex; justify-content: space-between; }
     .field label span { font-weight: 400; color: #555; }
     .field input[type=range] { width: 100%; accent-color: #1a1a1a; }
-    .field input[type=number] {
+    .field input[type=number],
+    .field select {
       width: 80px;
       padding: 4px 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 13px;
     }
+    .field select { width: 100%; background: #fff; }
     .row { display: flex; align-items: center; gap: 10px; }
     .row input[type=range] { flex: 1; }
     button {
@@ -130,6 +132,11 @@
         </div>
       </div>
 
+      <div class="field">
+        <label>Variante</label>
+        <select id="sl-variant"></select>
+      </div>
+
       <div class="status-area">
         <div class="spinner" id="spinner"></div>
         <span id="status-msg">Bereit</span>
@@ -166,10 +173,19 @@
     dirLight.position.set(1, 2, 1);
     scene.add(dirLight);
 
-    const geo = new THREE.BoxGeometry(1, 1, 1);
+    const DICKE = 28.6;
     const mat = new THREE.MeshStandardMaterial({ color: 0xd4b896, roughness: 0.7 });
-    const mesh = new THREE.Mesh(geo, mat);
-    scene.add(mesh);
+    const mesh = new THREE.Mesh(new THREE.BufferGeometry(), mat);
+
+    // containerGroup rotates plate + feature markers together
+    const containerGroup = new THREE.Group();
+    containerGroup.add(mesh);
+    const featureGroup = new THREE.Group();
+    containerGroup.add(featureGroup);
+    scene.add(containerGroup);
+
+    const holeMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.6 });
+    const koernungMat = new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.7 });
 
     function resize() {
       const w = container.clientWidth;
@@ -181,14 +197,198 @@
     resize();
     window.addEventListener('resize', resize);
 
-    function updateMesh(breite, tiefe) {
-      const DICKE = 28.6;
-      mesh.scale.set(breite, DICKE, tiefe);
+    function makeRoundedRect(w, d, rEcke) {
+      const r = Math.max(0, Math.min(rEcke, w / 2 - 0.001, d / 2 - 0.001));
+      const s = new THREE.Shape();
+      const x = -w / 2, y = -d / 2;
+      if (r <= 0) {
+        s.moveTo(x, y);
+        s.lineTo(x + w, y);
+        s.lineTo(x + w, y + d);
+        s.lineTo(x, y + d);
+        s.lineTo(x, y);
+        return s;
+      }
+      s.moveTo(x + r, y);
+      s.lineTo(x + w - r, y);
+      s.absarc(x + w - r, y + r, r, -Math.PI / 2, 0, false);
+      s.lineTo(x + w, y + d - r);
+      s.absarc(x + w - r, y + d - r, r, 0, Math.PI / 2, false);
+      s.lineTo(x + r, y + d);
+      s.absarc(x + r, y + d - r, r, Math.PI / 2, Math.PI, false);
+      s.lineTo(x, y + r);
+      s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5, false);
+      return s;
+    }
+
+    function buildPlateGeometry(breite, tiefe, rEcke, rKante) {
+      const bevel = Math.max(0, Math.min(rKante, DICKE / 2 - 0.01));
+      const depth = Math.max(DICKE - 2 * bevel, 0.001);
+      const shape = makeRoundedRect(breite, tiefe, rEcke);
+      const geom = new THREE.ExtrudeGeometry(shape, {
+        depth,
+        bevelEnabled: bevel > 0,
+        bevelThickness: bevel,
+        bevelSize: bevel,
+        bevelOffset: 0,
+        bevelSegments: 6,
+        curveSegments: 32,
+      });
+      geom.translate(0, 0, -depth / 2);
+      geom.rotateX(-Math.PI / 2);
+      return geom;
+    }
+
+    function updateMesh(breite, tiefe, rEcke, rKante) {
+      mesh.geometry.dispose();
+      mesh.geometry = buildPlateGeometry(breite, tiefe, rEcke, rKante);
+      rebuildFeatureMarkers(breite, tiefe);
+    }
+
+    // === Feature-Markers (Bohrungen / Körnungen aus features.json) ===
+    let featuresData = null;   // raw features.json contents
+    let variantsData = null;   // variants.json contents
+    let activeVariantId = null;
+
+    // Project a Fusion-world-XYZ into Three.js-local-XYZ for current breite/tiefe.
+    // Anchors via smallest-offset-wins (robust for "X mm from edge" patterns;
+    // approximate for parametric expressions like Gratnells_Mitte).
+    // Three.js frame: plate on X-Z plane, thickness along +Y.
+    //   Fusion X (Breite axis)  -> Three.js  X
+    //   Fusion Y (Tiefe axis)   -> Three.js -Z
+    //   Fusion Z (Dicke axis)   -> Three.js  Y - DICKE/2
+    const ANCHOR_TOL = 1.0; // mm — below this the offsets count as "centered"
+    function projectPosition(pos, currentB, currentT) {
+      const off = pos.offsets;
+      // X (Breite axis)
+      let x;
+      if (Math.abs(off.from_min_x - off.from_max_x) < ANCHOR_TOL) {
+        x = 0;
+      } else if (off.from_min_x <= off.from_max_x) {
+        x = -currentB / 2 + off.from_min_x;
+      } else {
+        x = currentB / 2 - off.from_max_x;
+      }
+      // Y_fusion (Tiefe axis) — flips sign to Three.js Z
+      let yFus;
+      if (Math.abs(off.from_min_y - off.from_max_y) < ANCHOR_TOL) {
+        yFus = 0;
+      } else if (off.from_min_y <= off.from_max_y) {
+        yFus = -currentT / 2 + off.from_min_y;
+      } else {
+        yFus = currentT / 2 - off.from_max_y;
+      }
+      const z = -yFus;
+      // Y_three (thickness) — Fusion Z=0 (bottom) -> -DICKE/2; Z=DICKE -> +DICKE/2
+      const y = pos.world.z - DICKE / 2;
+      return { x, y, z, fromTop: off.from_max_z < off.from_min_z };
+    }
+
+    function buildHoleMarker(hole, currentB, currentT) {
+      const data = hole.data;
+      const diameter = data.hole_diameter_mm || 3;
+      const radius = diameter / 2;
+      const isKoernung = (data.extent_distance_mm != null && data.extent_distance_mm <= 1.5)
+                       || data.hole_tip_angle_rad < 3.14;
+      const isThrough = data.extent_type === 'adsk::fusion::AllExtentDefinition'
+                      || data.extent_type === 'adsk::fusion::OneSideToExtentDefinition';
+      const material = isKoernung ? koernungMat : holeMat;
+      const meshes = [];
+      for (const pos of data.positions) {
+        const p = projectPosition(pos, currentB, currentT);
+        let height, yCenter;
+        if (isThrough) {
+          // Through: cylinder spans full thickness + small overshoot to look pierced
+          height = DICKE + 0.4;
+          yCenter = 0;
+        } else if (isKoernung) {
+          // Körnung: tiny disc on the surface
+          const depth = data.extent_distance_mm || 1;
+          height = depth + 0.05;
+          // From top of plate (Fusion Z = DICKE) downward, OR bottom up
+          if (p.fromTop) {
+            yCenter = DICKE / 2 - depth / 2;
+          } else {
+            yCenter = -DICKE / 2 + depth / 2;
+          }
+        } else {
+          // Blind hole (e.g. Dekoelement, depth 16 from top)
+          const depth = data.extent_distance_mm || 5;
+          height = depth + 0.05;
+          if (p.fromTop) {
+            yCenter = DICKE / 2 - depth / 2;
+          } else {
+            yCenter = -DICKE / 2 + depth / 2;
+          }
+        }
+        const geo = new THREE.CylinderGeometry(radius, radius, height, 24);
+        const m = new THREE.Mesh(geo, material);
+        m.position.set(p.x, yCenter, p.z);
+        meshes.push(m);
+      }
+      return meshes;
+    }
+
+    function clearFeatureGroup() {
+      while (featureGroup.children.length) {
+        const child = featureGroup.children[0];
+        featureGroup.remove(child);
+        if (child.geometry) child.geometry.dispose();
+      }
+    }
+
+    function rebuildFeatureMarkers(currentB, currentT) {
+      if (!featuresData || !activeVariantId) return;
+      clearFeatureGroup();
+      const variant = variantsData.variants.find(v => v.id === activeVariantId);
+      if (!variant) return;
+      const visibleSet = new Set(variant.features);
+      for (const hole of featuresData.holes) {
+        if (!visibleSet.has(hole.name)) continue;
+        if (!hole.data || !hole.data.positions) continue;
+        for (const m of buildHoleMarker(hole, currentB, currentT)) {
+          featureGroup.add(m);
+        }
+      }
+    }
+
+    async function loadFeatures() {
+      try {
+        const res = await fetch(`${API}/features`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        featuresData = json.features;
+        variantsData = json.variants;
+        // Populate variant dropdown
+        const sel = document.getElementById('sl-variant');
+        sel.innerHTML = '';
+        for (const v of variantsData.variants) {
+          const opt = document.createElement('option');
+          opt.value = v.id;
+          opt.textContent = v.label;
+          sel.appendChild(opt);
+        }
+        activeVariantId = variantsData.default_variant || (variantsData.variants[0] && variantsData.variants[0].id);
+        if (activeVariantId) sel.value = activeVariantId;
+        sel.addEventListener('change', () => {
+          activeVariantId = sel.value;
+          rebuildFeatureMarkers(
+            parseFloat(document.getElementById('sl-breite').value),
+            parseFloat(document.getElementById('sl-tiefe').value),
+          );
+        });
+        rebuildFeatureMarkers(
+          parseFloat(document.getElementById('sl-breite').value),
+          parseFloat(document.getElementById('sl-tiefe').value),
+        );
+      } catch (e) {
+        console.warn('Konnte features nicht laden:', e.message);
+      }
     }
 
     function animate() {
       requestAnimationFrame(animate);
-      mesh.rotation.y += 0.003;
+      containerGroup.rotation.y += 0.003;
       renderer.render(scene, camera);
     }
     animate();
@@ -205,7 +405,9 @@
         lbl.textContent = val + ' mm';
         updateMesh(
           parseFloat(document.getElementById('sl-breite').value),
-          parseFloat(document.getElementById('sl-tiefe').value)
+          parseFloat(document.getElementById('sl-tiefe').value),
+          parseFloat(document.getElementById('sl-recke').value),
+          parseFloat(document.getElementById('sl-rkante').value),
         );
       }
       sl.addEventListener('input', () => sync(sl.value));
@@ -215,14 +417,15 @@
       });
     }
 
+    // === API-Calls ===
+    const API = 'http://localhost:8000';
+
     linkParam('sl-breite', 'in-breite', 'lbl-breite');
     linkParam('sl-tiefe', 'in-tiefe', 'lbl-tiefe');
     linkParam('sl-recke', 'in-recke', 'lbl-recke');
     linkParam('sl-rkante', 'in-rkante', 'lbl-rkante');
-    updateMesh(1200, 600);
-
-    // === API-Calls ===
-    const API = 'http://localhost:8000';
+    updateMesh(1200, 600, 0, 0);
+    loadFeatures();
     let currentWorkItemId = null;
     let pollInterval = null;
 
@@ -248,6 +451,7 @@
         tiefe: parseFloat(document.getElementById('sl-tiefe').value),
         r_ecke: parseFloat(document.getElementById('sl-recke').value),
         r_kante: parseFloat(document.getElementById('sl-rkante').value),
+        variant: activeVariantId,
       };
 
       try {
@@ -274,19 +478,20 @@
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const { status } = await res.json();
 
-          if (status === 'succeeded') {
+          const s = (status || '').toLowerCase();
+          if (s === 'success' || s === 'succeeded') {
             clearInterval(pollInterval);
             spinner.classList.remove('active');
             btnConfigure.disabled = false;
             btnDownload.disabled = false;
             setStatus('Fertig — STEP bereit.', 'success');
-          } else if (status === 'failed') {
+          } else if (s.startsWith('failed') || s === 'cancelled') {
             clearInterval(pollInterval);
             spinner.classList.remove('active');
             btnConfigure.disabled = false;
-            setStatus('Fehler bei der Verarbeitung.', 'error');
+            setStatus(`Fehler bei der Verarbeitung (${status}).`, 'error');
           }
-          // pending / inProgress → weiter pollen
+          // pending / inprogress → weiter pollen
         } catch (e) {
           clearInterval(pollInterval);
           spinner.classList.remove('active');
