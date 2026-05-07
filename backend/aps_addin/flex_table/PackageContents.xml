@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationPackage SchemaVersion="1.0"
+    Version="1.0"
+    Id="{3A8F6E2C-1234-4B56-ABCD-FLEX00000001}"
+    Description="FLEX TABLE STEP Exporter"
+    Author="Flötotto"
+    FriendlyName="FlexTable">
+  <CompanyDetails Name="Flötotto" />
+  <RuntimeRequirements OS="Win64" Platform="Fusion360" SeriesMin="2" SeriesMax="*" />
+  <Components Description="FlexTable Add-In">
+    <Addin Name="flex_addin" />
+  </Components>
+</ApplicationPackage>
