@@ -93,7 +93,7 @@ class APSClient:
                     "verb": "get",
                 },
                 "result": {
-                    "url": f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/result_{{{{workItemId}}}}.step",
+                    "url": f"{APS_OSS_BASE}/buckets/{self._bucket}/objects/result_{{workItemId}}.step",
                     "headers": {
                         "Authorization": f"Bearer {token}",
                         "Content-Type": "application/octet-stream",
